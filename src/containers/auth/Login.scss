@@ -1,0 +1,134 @@
+$btnShadow: 0 5px 10px 0px;
+@mixin typography($fontSize, $fontWeight: normal, $fontColor: #373941) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  color: $fontColor;
+  text-decoration: none;
+}
+@mixin boxDecoration($backgroundColor, $ShadowColor: none) {
+  border-radius: 0.7rem;
+  border: none;
+  background-color: $backgroundColor;
+  outline: none;
+  box-shadow: $btnShadow $ShadowColor;
+}
+@mixin flexibleBox($justify: none) {
+  display: flex;
+  align-items: center;
+  justify-content: $justify;
+}
+//================================================
+
+.login__background {
+  display: fixed;
+  @include flexibleBox(center);
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f2f3f5;
+  .login {
+    max-width: 400px;
+    padding: 60px 70px;
+    width: 100%;
+    @include boxDecoration(white, #9999991a);
+
+    &__title {
+      @include typography(35px, bold);
+      margin-bottom: 45px;
+      text-align: center;
+    }
+    &__btnSocialLogin {
+      width: 100%;
+      @include typography(18px, bold, white);
+      @include boxDecoration(#4c6ff4, hsla(228, 88%, 63%, 0.4));
+      @include flexibleBox();
+      padding: 10px;
+
+      .login__socialIcon {
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border-radius: 10px;
+        color: #4c6ff4;
+        @include flexibleBox(center);
+        font-size: 30px;
+      }
+      & span {
+        margin: 0 auto;
+        font-size: 16px;
+      }
+    }
+    &__divider {
+      text-align: center;
+      @include typography(16px, normal, #999);
+      margin: 20px auto;
+      position: relative;
+      &::after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: rgba(153, 153, 153, 0.603);
+        position: absolute;
+        left: 0;
+        top: 50%;
+      }
+      & span {
+        display: inline-block;
+        padding: 10px 30px;
+        background-color: white;
+        position: relative;
+        z-index: 2;
+      }
+    }
+    &__form {
+      position: relative;
+      &__label {
+        @include typography(15px, 600, #373941e3);
+        display: inline-block;
+        position: absolute;
+        top: 1.3rem;
+        left: 1rem;
+        transition: top 200ms ease-in, left 200ms ease-in,
+          font-size 200ms ease-in;
+      }
+      &__input {
+        display: inline;
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-sizing: border-box;
+        @include boxDecoration(#f2f3f5);
+        @include typography(16px, 500);
+
+        &:focus {
+          background-color: white;
+          outline: #999 solid;
+        }
+      }
+    }
+
+    &__submit {
+      @include boxDecoration(#82c91e, hsla(85, 74%, 45%, 0.5));
+      @include typography(18px, 600, white);
+      padding: 20px;
+      display: inline-block;
+      width: 100%;
+      margin: 25px 0;
+    }
+    &__forgot {
+      text-align: center;
+      & a {
+        @include typography(16px, normal, #999);
+      }
+    }
+  }
+}
+
+.login__form__input:focus ~ .login__form__label,
+.login__form__input:not(:placeholder-shown).login__form__input:not(:focus)
+  ~ .login__form__label {
+  @include typography(12px, 500);
+  top: -0.6rem;
+  left: 1rem;
+  padding: 1px 8px;
+  background-color: white;
+}
