@@ -34,8 +34,9 @@ function Login() {
             Password
           </label>
         </div>
-
-        <button className="login__submit">Login</button>
+        <button className="login__submit" onClick={() => alert("hello")}>
+          Login
+        </button>
         <p className="login__forgot">
           <a href="#">Forgot your password ?</a>
         </p>

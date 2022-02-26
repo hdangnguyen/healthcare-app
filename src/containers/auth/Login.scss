@@ -20,7 +20,6 @@ $btnShadow: 0 5px 10px 0px;
 //================================================
 
 .login__background {
-  display: fixed;
   @include flexibleBox(center);
   width: 100%;
   min-height: 100vh;
@@ -99,15 +98,17 @@ $btnShadow: 0 5px 10px 0px;
         @include boxDecoration(#f2f3f5);
         @include typography(16px, 500);
 
+        &:not(:placeholder-shown),
         &:focus {
-          background-color: white;
-          outline: #999 solid;
+          @include boxDecoration(white);
+          //due to border-radius not working with outline in safari, that's why I used box-shadow instead
+          box-shadow: 0 0 0 1.5px #9999999f;
         }
       }
     }
 
     &__submit {
-      @include boxDecoration(#82c91e, hsla(85, 74%, 45%, 0.5));
+      @include boxDecoration(#82c91e, #81c81e80);
       @include typography(18px, 600, white);
       padding: 20px;
       display: inline-block;
@@ -126,7 +127,7 @@ $btnShadow: 0 5px 10px 0px;
 .login__form__input:focus ~ .login__form__label,
 .login__form__input:not(:placeholder-shown).login__form__input:not(:focus)
   ~ .login__form__label {
-  @include typography(12px, 500);
+  @include typography(12px, 600);
   top: -0.6rem;
   left: 1rem;
   padding: 1px 8px;
