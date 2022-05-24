@@ -6,7 +6,7 @@ class Login extends Component {
   constructor(props) {
     super(props); //when component Login is passed props, we can you super(props)
     this.state = {
-      username: "",
+      username: "hello",
       password: "",
     };
   }
